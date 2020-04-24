@@ -47,6 +47,7 @@
             this.BtnMenuShow = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.LblCopyRight = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +69,7 @@
             this.WorkTaskLv.UseCompatibleStateImageBehavior = false;
             this.WorkTaskLv.View = System.Windows.Forms.View.Details;
             this.WorkTaskLv.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.WorkTaskLv_ColumnWidthChanging);
+            this.WorkTaskLv.SelectedIndexChanged += new System.EventHandler(this.WorkTaskLv_SelectedIndexChanged);
             this.WorkTaskLv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WorkTaskLv_KeyDown);
             // 
             // IdCol
@@ -162,7 +164,7 @@
             // 
             this.TrayIcon.ContextMenuStrip = this.contextMenuStrip1;
             this.TrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayIcon.Icon")));
-            this.TrayIcon.Text = "notifyIcon1";
+            this.TrayIcon.Text = "Timely";
             this.TrayIcon.DoubleClick += new System.EventHandler(this.BtnStartPause_Click);
             // 
             // contextMenuStrip1
@@ -189,14 +191,23 @@
             // 
             // LblCopyRight
             // 
-            this.LblCopyRight.AutoSize = true;
             this.LblCopyRight.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LblCopyRight.Location = new System.Drawing.Point(5, 470);
+            this.LblCopyRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCopyRight.Location = new System.Drawing.Point(5, 461);
             this.LblCopyRight.Name = "LblCopyRight";
-            this.LblCopyRight.Size = new System.Drawing.Size(294, 13);
+            this.LblCopyRight.Size = new System.Drawing.Size(527, 25);
             this.LblCopyRight.TabIndex = 6;
             this.LblCopyRight.Text = "© CopyRight Bits Developments 2020 Dev.Hasan Elsherbiny";
             this.LblCopyRight.Click += new System.EventHandler(this.LblCopyRight_Click);
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(290, 9);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(67, 13);
+            this.lblTotal.TabIndex = 4;
+            this.lblTotal.Text = "Total : 00:00";
             // 
             // Form1
             // 
@@ -206,6 +217,7 @@
             this.ClientSize = new System.Drawing.Size(540, 495);
             this.Controls.Add(this.LblCopyRight);
             this.Controls.Add(this.CmbTasks);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.CmbProfiles);
             this.Controls.Add(this.label1);
@@ -244,6 +256,7 @@
         private System.Windows.Forms.ToolStripMenuItem BtnMenuShow;
         private System.Windows.Forms.ToolStripMenuItem BtnMenuExit;
         private System.Windows.Forms.Label LblCopyRight;
+        private System.Windows.Forms.Label lblTotal;
     }
 }
 

@@ -63,6 +63,8 @@ namespace Timely
                 BtnStartPause.Text = "Start";
                 AutoSaveTimer_Tick(null, null);
                 TrayIcon.Icon = Properties.Resources.iconStopped;
+                NotifiyFrm.ShowNotify("Timely Tracking Is Paused", Color.Red);
+                TrayIcon.Text = "Timely Tracking Is Paused";
             }
             else
             {
@@ -72,6 +74,7 @@ namespace Timely
                 Session.ActiveProfile.Save();
                 BtnStartPause.Text = "Pause";
                 NotifiyFrm.ShowNotify("Timely Tracking Is Running", Color.Green);
+                TrayIcon.Text = "Timely Tracking Is Running";
                 TrayIcon.Icon = Properties.Resources.iconRunning;
                 DisplayWorkTasks(Session.ActiveWorkTask);
             }
@@ -90,7 +93,6 @@ namespace Timely
                 var WorkPeriod = Session.ActiveWorkTask.WorkPeriods.LastOrDefault();
                 WorkPeriod.To = DateTime.Now;
                 Session.ActiveProfile.Save();
-                NotifiyFrm.ShowNotify("Timely Tracking Is Paused", Color.Red);
                 DisplayWorkTasks(Session.ActiveWorkTask);
             }
         }
@@ -185,6 +187,18 @@ namespace Timely
         private void LblCopyRight_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://hassanelsherbiny.github.io/");
+        }
+
+        private void WorkTaskLv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var SelectedIds = new List<string>();
+            foreach (ListViewItem item in WorkTaskLv.SelectedItems)
+            {
+                SelectedIds.Add(item.Text);
+            }
+            var TotalMinuts = Session.ActiveWorkTask.WorkPeriods.Where(x => SelectedIds.Contains(x.Id)).Sum(x => x.Period.TotalMinutes);
+            var Totalts = TimeSpan.FromMinutes(TotalMinuts);
+            lblTotal.Text = "Total : " + TimeSpanToString(Totalts);
         }
     }
 }
